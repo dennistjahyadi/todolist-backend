@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      workspaceId: {
+      WorkspaceId: {
         allowNull: false,
         references: {
           model: {

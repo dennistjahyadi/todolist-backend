@@ -14,7 +14,7 @@ class TodoListener {
 
       const result = await Todo.findAll({
         where: {
-          workspaceId: workspaceId,
+          WorkspaceId: workspaceId,
           deleted: false
         }
       })

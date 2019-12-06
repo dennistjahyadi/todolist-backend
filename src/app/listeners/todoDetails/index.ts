@@ -13,7 +13,7 @@ class TodoDetailsListener {
 
       const result = await TodoDetails.findAll({
         where: {
-          todoId: todoId,
+          TodoId: todoId,
           deleted: false
         }
       })
@@ -29,7 +29,7 @@ class TodoDetailsListener {
       if(!content || !todoId) throw new CustomError("null-value", "content and todoId parameter is required")
 
       const result = await TodoDetails.create({
-        todoId: todoId,
+        TodoId: todoId,
         content: content
       })
       return res.status(200).json(result)

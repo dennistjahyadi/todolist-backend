@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      todoId: {
+      TodoId: {
         type: Sequelize.INTEGER,
         model: {
           tableName: 'Todos'
@@ -20,7 +20,7 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
-      isComplete: {
+      isCompleted: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
