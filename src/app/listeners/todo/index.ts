@@ -44,14 +44,14 @@ class TodoListener {
       const { id, content } = req.body
       if(!id || !content) throw new CustomError("null-value", "id and content parameter is required")
 
-      await Todo.update({
+      const result = await Todo.update({
         content: content,
       }, {
         where: {
           id: id
         }
       });
-      return res.status(200).json(1)
+      return res.status(200).json(result)
     }catch(err){
       ErrorAPI.responseError(res, err)
     }
@@ -62,14 +62,14 @@ class TodoListener {
       const { id } = req.body
       if(!id) throw new CustomError("null-value", "id parameter is required")
 
-      await Todo.update({
+      const result = await Todo.update({
         deleted: true,
       }, {
         where: {
           id: id
         }
       });
-      return res.status(200).json(1)
+      return res.status(200).json(result)
     }catch(err){
       ErrorAPI.responseError(res, err)
     }

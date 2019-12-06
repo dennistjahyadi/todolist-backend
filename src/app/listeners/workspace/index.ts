@@ -38,14 +38,14 @@ class WorkspaceListener{
       const { id, name } = req.body
       if(!id || !name) throw new CustomError("null-value", "id and name parameter is required")
 
-      await Workspace.update({
+      const result = await Workspace.update({
         name: name,
       }, {
         where: {
           id: id
         }
       });
-      return res.status(200).json(1)
+      return res.status(200).json(result)
     }catch(err){
       ErrorAPI.responseError(res, err)
     }
@@ -56,14 +56,14 @@ class WorkspaceListener{
       const { id } = req.body
       if(!id) throw new CustomError("null-value", "id parameter is required")
 
-      await Workspace.update({
+      const result = await Workspace.update({
         deleted: true,
       }, {
         where: {
           id: id
         }
       });
-      return res.status(200).json(1)
+      return res.status(200).json(result)
     }catch(err){
       ErrorAPI.responseError(res, err)
     }
