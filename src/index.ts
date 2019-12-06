@@ -15,7 +15,7 @@ const User = require('@sequelize/models').User
 
 // const createUser = async () => {
 
-//   const username = "admin"
+//   const username = "admisn"
 //   const password = "adminadmin"
 //   const encryptedPass = await bcrypt.hash(password, 10)
 //   const token = await bcrypt.hash(username+password, 10)
@@ -33,6 +33,9 @@ const User = require('@sequelize/models').User
 // .catch((err: Error) => console.log('Error: ' + err))
 
 const app: Application = express();
+const cors = require("cors");
+
+app.use(cors());
 app.use(bearerToken());
 app.use(express.json());
 
