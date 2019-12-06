@@ -23,7 +23,6 @@ class UserListener{
       } else throw new CustomError("auth/error", "Auth failed")
       
     }catch(err){
-      console.log("asdfasdf")
       ErrorAPI.responseError(res, err)
     }  
   }

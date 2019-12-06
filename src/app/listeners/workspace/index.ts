@@ -8,7 +8,11 @@ class WorkspaceListener{
 
   static async getAll(req: Request, res: Response) {
     try{
-      const result = await Workspace.fetchAll()
+      const result = await Workspace.findAll({
+        where: {
+          deleted: false
+        }
+      })
       return res.status(200).json(result)
     }catch(err){
       ErrorAPI.responseError(res, err)
@@ -52,7 +56,9 @@ class WorkspaceListener{
       const { id } = req.body
       if(!id) throw new CustomError("null-value", "id parameter is required")
 
-      await Workspace.destroy({
+      await Workspace.update({
+        deleted: true,
+      }, {
         where: {
           id: id
         }

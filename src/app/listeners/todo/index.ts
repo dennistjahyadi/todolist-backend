@@ -12,9 +12,10 @@ class TodoListener {
       const { workspaceId } = req.body
       if(!workspaceId) throw new CustomError("null-value", "workspaceId parameter is required")
 
-      const result = await Todo.fetchAll({
+      const result = await Todo.findAll({
         where: {
-          workspaceId: workspaceId
+          workspaceId: workspaceId,
+          deleted: false
         }
       })
       return res.status(200).json(result)
@@ -61,7 +62,9 @@ class TodoListener {
       const { id } = req.body
       if(!id) throw new CustomError("null-value", "id parameter is required")
 
-      await Todo.destroy({
+      await Todo.update({
+        deleted: true,
+      }, {
         where: {
           id: id
         }

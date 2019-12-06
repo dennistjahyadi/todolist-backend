@@ -1,7 +1,6 @@
 import { Application, Request, Response } from "express";
 require('module-alias/register');
 require('dotenv').config()
-const bcrypt = require("bcrypt");
 const express = require("express")
 const bearerToken = require("express-bearer-token");
 const AuthMiddleware = require("./app/middleware/auth");
@@ -10,27 +9,6 @@ const UserListener = require("./app/listeners/user")
 const WorkspaceListener = require("./app/listeners/workspace")
 const TodoListener = require("./app/listeners/todo")
 const TodoDetailsListener = require("./app/listeners/todoDetails")
-const Workspace = require('@sequelize/models').Workspace
-const User = require('@sequelize/models').User
-
-// const createUser = async () => {
-
-//   const username = "admisn"
-//   const password = "adminadmin"
-//   const encryptedPass = await bcrypt.hash(password, 10)
-//   const token = await bcrypt.hash(username+password, 10)
-    
-//   User.create({
-//     username: username,
-//     password: encryptedPass,
-//     token: token
-//   }).then(() => console.log("success"))
-// }
-// createUser()
-
-// db.authenticate()
-// .then(() => console.log('Database connected..'))
-// .catch((err: Error) => console.log('Error: ' + err))
 
 const app: Application = express();
 const cors = require("cors");

@@ -15,6 +15,6 @@ module.exports = async (req: any, res: Response, next: NextFunction) => {
     
   }catch(err){
     if(err.name === "auth/error") res.status(403).end();
-    res.status(500).json(err.stack);
+    else res.status(500).json(err.stack);
   }
 }

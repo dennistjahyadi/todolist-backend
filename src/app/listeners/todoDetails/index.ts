@@ -11,9 +11,10 @@ class TodoDetailsListener {
       const { todoId } = req.body
       if(!todoId) throw new CustomError("null-value", "todoId parameter is required")
 
-      const result = await TodoDetails.fetchAll({
+      const result = await TodoDetails.findAll({
         where: {
-          todoId: todoId
+          todoId: todoId,
+          deleted: false
         }
       })
       return res.status(200).json(result)
@@ -61,7 +62,9 @@ class TodoDetailsListener {
       const { id } = req.body
       if(!id) throw new CustomError("null-value", "id parameter is required")
 
-      await TodoDetails.destroy({
+      await TodoDetails.update({
+        deleted: true
+      }, {
         where: {
           id: id
         }

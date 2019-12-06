@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Todo = sequelize.define('Todo', {
     content: DataTypes.STRING,
-    workspaceId: DataTypes.INTEGER
+    workspaceId: DataTypes.INTEGER,
+    deleted: DataTypes.BOOLEAN
   }, {});
   Todo.associate = function(models) {
     // associations can be defined here

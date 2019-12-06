@@ -22,6 +22,10 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
+      deleted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
