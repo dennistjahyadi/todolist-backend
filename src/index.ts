@@ -27,13 +27,17 @@ app.post("/workspaces", AuthMiddleware,  (req: Request, res: Response) => Worksp
 app.post("/workspaces/update", AuthMiddleware,  (req: Request, res: Response) => WorkspaceListener.update(req, res) )
 app.post("/workspaces/destroy", AuthMiddleware,  (req: Request, res: Response) => WorkspaceListener.destroy(req, res) )
 
-app.get("/todos", AuthMiddleware,  (req: Request, res: Response) => TodoListener.getAllByWorkspaceId(req, res) )
+app.get("/todos", AuthMiddleware,  (req: Request, res: Response) => TodoListener.getAll(req, res) )
+app.get("/todos/details/:todoId", AuthMiddleware,  (req: Request, res: Response) => TodoListener.getDetails(req, res) )
+app.get("/todos/:workspaceId", AuthMiddleware,  (req: Request, res: Response) => TodoListener.getAllByWorkspaceId(req, res) )
 app.post("/todos", AuthMiddleware,  (req: Request, res: Response) => TodoListener.create(req, res) )
 app.post("/todos/update", AuthMiddleware,  (req: Request, res: Response) => TodoListener.update(req, res) )
 app.post("/todos/destroy", AuthMiddleware,  (req: Request, res: Response) => TodoListener.destroy(req, res) )
 
-app.get("/tododetails", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.getAllByTodoId(req, res) )
+app.get("/tododetails", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.getAll(req, res) )
+app.get("/tododetails/:todoId", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.getAllByTodoId(req, res) )
 app.post("/tododetails", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.create(req, res) )
 app.post("/tododetails/update", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.update(req, res) )
+app.post("/tododetails/toggle", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.toggleComplete(req, res) )
 app.post("/tododetails/destroy", AuthMiddleware,  (req: Request, res: Response) => TodoDetailsListener.destroy(req, res) )
 

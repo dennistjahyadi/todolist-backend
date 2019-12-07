@@ -8,14 +8,35 @@ class TodoDetailsListener {
 
   static async getAllByTodoId(req: Request, res: Response) {
     try{
-      const { todoId } = req.body
+      const { todoId } = req.params
       if(!todoId) throw new CustomError("null-value", "todoId parameter is required")
 
       const result = await TodoDetails.findAll({
         where: {
           TodoId: todoId,
           deleted: false
-        }
+        },
+        order: [
+          // Will escape title and validate DESC against a list of valid direction parameters
+          ['id', 'ASC']
+        ]
+      })
+      return res.status(200).json(result)
+    }catch(err){
+      ErrorAPI.responseError(res, err)
+    }
+  }
+
+  static async getAll(req: Request, res: Response) {
+    try{
+      const result = await TodoDetails.findAll({
+        where: {
+          deleted: false
+        },
+        order: [
+          // Will escape title and validate DESC against a list of valid direction parameters
+          ['id', 'ASC']
+        ]
       })
       return res.status(200).json(result)
     }catch(err){
@@ -40,12 +61,28 @@ class TodoDetailsListener {
 
   static async update(req: Request, res: Response) {
     try{
-      const { id, content, isComplete } = req.body
+      const { id, content } = req.body
       if(!id || !content) throw new CustomError("null-value", "id and content parameter is required")
 
       const result = await TodoDetails.update({
-        content: content,
-        isComplete: (isComplete)
+        content: content
+      }, {
+        where: {
+          id: id
+        }
+      });
+      return res.status(200).json(result)
+    }catch(err){
+      ErrorAPI.responseError(res, err)
+    }
+  }
+
+  static async toggleComplete(req: Request, res: Response) {
+    try{
+      const { id, isCompleted } = req.body
+      if(!id) throw new CustomError("null-value", "id and isCompleted parameter is required")
+      const result = await TodoDetails.update({
+        isCompleted: isCompleted
       }, {
         where: {
           id: id

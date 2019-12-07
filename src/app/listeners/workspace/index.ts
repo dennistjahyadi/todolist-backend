@@ -1,3 +1,4 @@
+const Todo = require('@sequelize/models').Todo
 const Workspace = require('@sequelize/models').Workspace
 const ErrorAPI = require('../../api/error')
 const CustomError = require('../../entities/error')
@@ -11,7 +12,17 @@ class WorkspaceListener{
       const result = await Workspace.findAll({
         where: {
           deleted: false
-        }
+        },
+        include:[
+          { model: Todo,
+            where: { deleted: false },   
+            required:false
+            }
+        ],
+        order: [
+          // Will escape title and validate DESC against a list of valid direction parameters
+          ['id', 'ASC']
+        ]
       })
       return res.status(200).json(result)
     }catch(err){
