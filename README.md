@@ -7,3 +7,7 @@ how to run the project:
 6. run seeders by typing "npx sequelize-cli db:seed:all"
 7. npm run build
 8. npm start
+
+dummy user: 
+username: admin
+pass: adminadmin
