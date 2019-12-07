@@ -8,6 +8,6 @@ how to run the project:
 7. npm run build
 8. npm start
 
-dummy user: 
-username: admin
+dummy user, 
+username: admin |
 pass: adminadmin
